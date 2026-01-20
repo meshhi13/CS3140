@@ -1,0 +1,10 @@
+Prithee
+----------
+- SonnetVerse: String {static, final}
+- SonnetArray: String[] {static, final}
+- CleanedSonnetArray: String[] {static, final}
+- input: Scanner {static, final}
+----------
++ promptEnterKey(): void {static}
++ pritheeLoop(): void {static}
++ pritheeGame(): boolean {static}

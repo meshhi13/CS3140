@@ -2,10 +2,23 @@ import java.io.IOException;
 import java.util.*;
 
 public class Prithee {
-    private static final String SonnetVerse = "Two households, both alike in dignity, In fair Verona, where we lay our scene, From ancient grudge break to new mutiny, Where civil blood makes civil hands unclean. From forth the fatal loins of these two foes A pair of star-cross’d lovers take their life; Whose misadventured piteous overthrows Do with their death bury their parents’ strife. The fearful passage of their death-mark’d love, And the continuance of their parents’ rage, Which, but their children’s end, nought could remove, Is now the two hours’ traffic of our stage; The which if you with patient ears attend, What here shall miss, our toil shall strive to mend.";
+    private static final String SonnetVerse = "Two households, both alike in dignity, \nIn fair Verona, where we lay our scene, \nFrom ancient grudge break to new mutiny, \nWhere civil blood makes civil hands unclean. \nFrom forth the fatal loins of these two foes \nA pair of star-cross’d lovers take their life; \nWhose misadventured piteous overthrows \nDo with their death bury their parents’ strife. \nThe fearful passage of their death-mark’d love, \nAnd the continuance of their parents’ rage, \nWhich, but their children’s end, nought could remove, \nIs now the two hours’ traffic of our stage; \nThe which if you with patient ears attend, \nWhat here shall miss, our toil shall strive to mend.";
     private static final String[] SonnetArray = SonnetVerse.split(" ");
-    private static final String[] CleanedSonnetArray = SonnetVerse.replaceAll(",", "").replaceAll("\\.", ",").toLowerCase().split(" ");
+    private static final String[] CleanedSonnetArray = SonnetVerse.replaceAll(",", "").replaceAll("\\.", "").toLowerCase().split(" ");
     private static final Scanner input = new Scanner(System.in);
+
+    public static String getSonnetVerse() {
+        return SonnetVerse;
+    }
+
+    public static String[] getSonnetArray() {
+        return SonnetArray;
+    }
+
+    public static String[] getCleanedSonnetArray() {
+        return CleanedSonnetArray;
+    }
+
     public static void promptEnterKey(){
         System.out.println("Press \"ENTER\" to continue...");
         try {
@@ -19,7 +32,9 @@ public class Prithee {
         int numCorrect = 0;
         int numIncorrect = 0;
         while (numCorrect < 3 && numIncorrect < 3) {
-            if (pritheeGame()) {
+            int randomDigit = new Random().nextInt(CleanedSonnetArray.length);
+
+            if (pritheeGame(randomDigit)) {
                 System.out.println("Correct!");
                 numCorrect++;
             }
@@ -34,12 +49,8 @@ public class Prithee {
         System.out.println("Game over.");
     }
 
-    public static boolean pritheeGame() {
-        int randomDigit = new Random().nextInt(CleanedSonnetArray.length);
+    public static boolean pritheeGame(int randomDigit) {
         for (int i = 0; i < randomDigit; i++) {
-            if (Character.isUpperCase(SonnetArray[i].toCharArray()[0])) {
-                System.out.println();
-            }
             System.out.print(SonnetArray[i] + " ");
         }
 
@@ -54,5 +65,4 @@ public class Prithee {
         String matchInput = input.next();
         return matchInput.equalsIgnoreCase(CleanedSonnetArray[randomDigit]);
     }
-
 }
